@@ -13,6 +13,6 @@ import { ProductListComponent } from './products/product-list/product-list.compo
     BrowserModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ProductListComponent]
 })
 export class AppModule { }
