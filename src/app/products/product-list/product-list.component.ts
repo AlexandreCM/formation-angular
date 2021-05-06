@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../product.interface';
 import {ProductService} from '../../services/product.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -12,17 +13,13 @@ export class ProductListComponent implements OnInit {
   title = 'Products';
   products: Product[];
   selectedProduct: Product;
+  products$: Observable<Product[]>;
 
   constructor(private productService: ProductService) {
   }
 
   ngOnInit(): void {
-    this
-      .productService
-      .products$
-      .subscribe(
-      data => this.products = data
-    );
+    this.products$ = this.productService.products$;
   }
 
   onSelect(product: Product): void {
