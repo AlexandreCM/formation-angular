@@ -10,6 +10,7 @@ export class ProductListComponent implements OnInit {
 
   title = 'Products';
   products: Product[];
+  selectedProduct: Product;
 
   constructor() {
     this.products = [
@@ -62,6 +63,10 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onSelect(product: Product): void {
+    this.selectedProduct = product;
   }
 
 }
