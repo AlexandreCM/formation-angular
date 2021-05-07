@@ -9,7 +9,7 @@ import {catchError, delay, shareReplay, tap, map} from 'rxjs/operators';
 })
 export class ProductService {
 
-  private readonly baseUrl = 'https://123storerestservice.azurewebsites.net/api/products/';
+  private readonly baseUrl = 'https://storerestservice.azurewebsites.net/api/products/';
   products$: Observable<Product[]>;
 
   constructor(private http: HttpClient) {
