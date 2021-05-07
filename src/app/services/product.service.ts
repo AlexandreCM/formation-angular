@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Product} from '../products/product.interface';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {catchError, delay, shareReplay, tap, map} from 'rxjs/operators';
+import {catchError, delay, shareReplay, tap, map, find} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,12 @@ export class ProductService {
         shareReplay(),
         catchError(this.handleError)
       );
+  }
+
+  getProductById(id: number): Observable<Product> {
+    return this.products$.pipe(
+      map( products => products.find(product => product.id === id))
+    );
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {

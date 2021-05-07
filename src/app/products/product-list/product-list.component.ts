@@ -3,6 +3,7 @@ import {Product} from '../product.interface';
 import {ProductService} from '../../services/product.service';
 import {EMPTY, Observable} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -22,7 +23,7 @@ export class ProductListComponent implements OnInit {
   end = this.pageSize;
   pageNumber = 1;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -41,6 +42,7 @@ export class ProductListComponent implements OnInit {
 
   onSelect(product: Product): void {
     this.selectedProduct = product;
+    this.router.navigateByUrl('/products/' + product.id);
   }
 
   previousPage(): void {

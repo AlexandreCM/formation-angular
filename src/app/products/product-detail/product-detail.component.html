@@ -1,3 +1,7 @@
+<div *ngIf="!product">
+    <h2>No product to display!</h2>
+</div>
+
 <div *ngIf="product">
     <h2>{{product.name | uppercase}}</h2>
     <img style="float:right" [src]="product.imageUrl" *ngIf="product.imageUrl" width="250"/>
