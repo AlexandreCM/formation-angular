@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Product} from '../products/product.interface';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {catchError, delay, shareReplay, tap, map, find} from 'rxjs/operators';
+import {catchError, delay, map, shareReplay, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
