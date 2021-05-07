@@ -17,9 +17,11 @@ export class ProductService {
   }
 
   initProducts(): void {
+    const url = this.baseUrl + `?$orderby=ModifiedDate%20desc`;
+
     this.products$ = this
       .http
-      .get<Product[]>(this.baseUrl)
+      .get<Product[]>(url)
       .pipe(
         delay(1500),
         tap(console.table),
@@ -30,8 +32,12 @@ export class ProductService {
 
   getProductById(id: number): Observable<Product> {
     return this.products$.pipe(
-      map( products => products.find(product => product.id === id))
+      map(products => products.find(product => product.id === id))
     );
+  }
+
+  insertProduct(newProduct: Product): Observable<Product> {
+    return this.http.post<Product>(this.baseUrl, newProduct);
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
