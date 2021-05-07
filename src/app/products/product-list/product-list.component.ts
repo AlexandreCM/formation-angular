@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../product.interface';
 import {ProductService} from '../../services/product.service';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {EMPTY, Observable} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit {
   selectedProduct: Product;
   products$: Observable<Product[]>;
   productsNumber$: Observable<number>;
+  errorMessage: string;
 
   pageSize = 5;
   start = 0;
@@ -25,7 +26,13 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.products$ = this.productService.products$;
+    this.products$ = this.productService.products$
+      .pipe(
+        catchError(err => {
+          this.errorMessage = err;
+          return EMPTY;
+        })
+      );
     this.productsNumber$ = this.products$
       .pipe(
         map(products => products.length)
