@@ -13,7 +13,8 @@
     <li *ngFor="let product of products | slice:start:end"
         [class.discontinued]="product.discontinued"
         [class.selected]="product === selectedProduct"
-        (click)="onSelect(product)">
+        (click)="onSelect(product)"
+        [title]="product | json">
         <span class="name">{{ product.name | uppercase }}</span>
         <span class="description">{{ product.description }}</span>
         <span class="price">{{ product.price | currency: 'CAD': 'symbol' }}</span>
