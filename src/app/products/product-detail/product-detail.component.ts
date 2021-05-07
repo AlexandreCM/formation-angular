@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../product.interface';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../../services/product.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class ProductDetailComponent implements OnInit {
 
   product: Product;
 
-  constructor(private activatedRoute: ActivatedRoute, private productService: ProductService) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private productService: ProductService) {
   }
 
   ngOnInit(): void {
@@ -23,6 +23,18 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(
         result => this.product = result
       );
+  }
+
+  delete(): void {
+    if (window.confirm('Are you sure ??')) {
+      this.productService.deleteProduct(this.product.id).subscribe(
+        () => {
+          console.log('Product deleted');
+          this.productService.initProducts();
+          this.router.navigateByUrl('/products');
+        }
+      );
+    }
   }
 
 }

@@ -44,7 +44,7 @@ export class ProductInsertComponent implements OnInit {
     const newProduct: Product = this.insertForm.value;
     this.productService.insertProduct(newProduct).subscribe(
       product => {
-        console.log('Product saved on the server with id' + product.id);
+        console.log('Product saved on the server with id ' + product.id);
         this.productService.initProducts();
         this.router.navigateByUrl('/products');
       }

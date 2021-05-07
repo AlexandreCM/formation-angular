@@ -40,6 +40,10 @@ export class ProductService {
     return this.http.post<Product>(this.baseUrl, newProduct);
   }
 
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete(this.baseUrl + id);
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     // in a real world app, you may send the error to the server using some remote logging infrastructure
     // instead of just logging it to the console

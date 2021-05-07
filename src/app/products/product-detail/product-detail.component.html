@@ -16,4 +16,9 @@
     <p>Fixed price? {{product.fixedPrice}}</p>
     <p>Discontinued? <input type="checkbox" [(ngModel)]="product.discontinued"></p>
     <p>Modified date:{{product.modifiedDate | date}}</p>
+
+    <p>
+        <button (click)="delete()">Delete</button>
+    </p>
 </div>
+
