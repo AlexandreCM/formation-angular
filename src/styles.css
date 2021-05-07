@@ -68,8 +68,8 @@ nav a:hover {
   background-color: #CFD8DC;
 }
 nav a.active {
-  color: #039be5;
-  background-color: yellow;
+  color: #ffffff;
+  background-color: #2892ef;
 }
 
 /* items class */
